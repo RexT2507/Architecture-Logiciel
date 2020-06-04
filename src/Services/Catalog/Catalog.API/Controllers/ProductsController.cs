@@ -14,7 +14,16 @@ namespace Catalog.API.Controllers
     [ApiVersion("1")]
     public class ProductsController : ControllerBase
     {
-        [HttpGet]
+
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult> GetProducts()
+        {
+            return Ok(new List<Product>());
+        }
+
+        /*[HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -22,10 +31,15 @@ namespace Catalog.API.Controllers
         [ApiVersion("2")]
         public async Task<ActionResult> GetProducts(ApiVersion version)
         {
+            IEnumerable<Product> result = null;
+            if(version.MajorVersion == 2)
+            {
+                result = new List<Product>();
+            }
             return Ok(new List<Product>());
-        }
+        }*/
 
-/*        [HttpGet]
+        /*[HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
