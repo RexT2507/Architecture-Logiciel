@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\JurassicPizza",
+    "\\src\\Services"
   ],
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
