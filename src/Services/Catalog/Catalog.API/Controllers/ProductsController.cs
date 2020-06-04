@@ -19,12 +19,13 @@ namespace Catalog.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ApiVersion("1", Deprecated = true)]
-        public async Task<ActionResult> GetProducts()
+        [ApiVersion("2")]
+        public async Task<ActionResult> GetProducts(ApiVersion version)
         {
             return Ok(new List<Product>());
         }
 
-        [HttpGet]
+/*        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -32,6 +33,6 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult> GetProducts_V2()
         {
             return Ok(new List<Product>());
-        }
+        }*/
     }
 }
