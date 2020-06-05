@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Catalog.API.Data;
 using Catalog.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,13 @@ namespace Catalog.API.Controllers
     [ApiVersion("1")]
     public class ProductsController : ControllerBase
     {
+
+        private readonly CatalogDbContext _db;
+        public ProductsController(CatalogDbContext db)
+        {
+            _db = db;
+        }
+
 
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

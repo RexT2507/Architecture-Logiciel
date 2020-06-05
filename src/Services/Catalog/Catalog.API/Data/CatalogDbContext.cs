@@ -9,6 +9,12 @@ namespace Catalog.API.Data
 {
     public class CatalogDbContext : DbContext
     {
+
+        public CatalogDbContext(DbContextOptions options) : base(options)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -19,5 +25,7 @@ namespace Catalog.API.Data
             modelBuilder.Entity<Product>().HasIndex("Name");
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Product> Products { get; set; }
     }
 }
