@@ -28,7 +28,26 @@ namespace Catalog.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult> GetProducts()
         {
-            return Ok(new List<Product>());
+            var products = _db.Products;
+            return Ok(products);
+        }
+
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<ActionResult> PostProduct([FromBody]Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Products.Add(product);
+                await _db.SaveChangesAsync();
+                return Created("", product);
+            }
+            else
+            {
+
+            }
+            return null;
         }
 
         /*[HttpGet]
